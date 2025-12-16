@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Videojuegos para todos</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1720;
+      --muted:#9aa6b2;
+      --accent:#6ee7b7;
+      --accent-2:#60a5fa;
+      --card:#121619;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:var(--bg); color:#e6eef6; -webkit-font-smoothing:antialiased;}
+    header{padding:24px 16px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-bottom:1px solid rgba(255,255,255,0.03)}
+    h1{margin:0;font-size:28px;color:var(--accent)}
+    nav{display:flex;gap:8px;justify-content:center;padding:14px;background:transparent}
+    nav button{background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);padding:10px 14px;border-radius:8px;cursor:pointer;font-size:16px}
+    nav button.active{color:#042;background:linear-gradient(90deg,var(--accent),var(--accent-2));border:1px solid rgba(255,255,255,0.02)}
+    main{padding:20px;max-width:1100px;margin:0 auto}
+    section{display:none;padding:10px 0}
+    section.active{display:block}
+    .section-title{font-size:20px;color:#cde7ff;margin:12px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,0.02);border-radius:10px;padding:12px;display:flex;flex-direction:column;align-items:center}
+    .thumb{width:100%;height:160px;display:block;border-radius:8px;object-fit:cover;background:#071119}
+    .title{margin-top:10px;font-size:16px;color:#e6eef6;text-align:center}
+    footer{padding:18px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:24px}
+    @media(max-width:600px){
+      h1{font-size:22px}
+      .thumb{height:140px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Videojuegos para todos</h1>
+  </header>
+
+  <nav>
+    <button id="btn-nuevos" class="active" onclick="mostrar('nuevos')">Videojuegos nuevos</button>
+    <button id="btn-antiguos" onclick="mostrar('antiguos')">Videojuegos antiguos</button>
+  </nav>
+
+  <main>
+    <section id="nuevos" class="active">
+      <div class="section-title">Videojuegos nuevos</div>
+      <div class="grid">
+        <div class="card">
+          <img class="thumb" src="elden ring.jpg" alt="Elden Ring">
+          <div class="title">Elden Ring</div>
+        </div>
+        <div class="card">
+          <img class="thumb" src="starfield.jpg" alt="Starfield">
+          <div class="title">Starfield</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="antiguos">
+      <div class="section-title">Videojuegos antiguos</div>
+      <div class="grid">
+        <div class="card">
+          <img class="thumb" src="sonic.jpg" alt="Sonic the Hedgehog">
+          <div class="title">Sonic the Hedgehog</div>
+        </div>
+        <div class="card">
+          <img class="thumb" src="spiderman 2.avif" alt="Spider-Man 2">
+          <div class="title">Spider-Man 2</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Videojuegos para todos</footer>
+
+  <script>
+    function mostrar(id){
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if(id === 'nuevos') document.getElementById('btn-nuevos').classList.add('active');
+      else document.getElementById('btn-antiguos').classList.add('active');
+    }
+    // Evitar errores si event no está definido en navegadores antiguos
+    window.mostrar = mostrar;
+  </script>
+</body>
+</html>
